@@ -1,0 +1,27 @@
+---
+title: AutoDoc
+desc: This is an app that automatically generates documentation for a codebase.
+date: 2023-5-23
+---
+
+<Callout type='warning'>
+    The AutoDoc project is currently on hold. We may pick it up again in the future. 
+</Callout>
+
+{/* <RepoCard url="https://api.github.com/repos/jborg2/jborg-website-v2"/> */}
+
+## Introduction
+
+This is the first project that Jake and I (Ben) worked on together. We picked it as a first project because we thought it would be a good way to learn each other's workflow and because we could use it as an internal tool. The reason we probably wouldn't have done this project otherwise is that there's a big risk that an incumbent like GitHub would just add this feature to their existing platform and make this app obsolete.
+
+## How It Works
+
+AutoDoc works in 2 parts. The first is static analysis, and the second is documentation generation via a Large Language Model. 
+The static analysis module creates a call graph of the code base. This call graph contains edges between methods that call each other. 
+For example, if method a calls methods b and c, the call graph contains the following edges: [[a, b], [a, c]]. Autodocs then uses 
+the LLM to summarize methods starting at the highest topological level of the call graph (leaf nodes). Once all called methods for a
+ method are summarized, the description of the called methods is injected as comments into the caller method before it is summarized. 
+ Finally, each file is summaries with its called method summaries injected as comments.
+
+
+## Using AutoDoc to Document Itself
