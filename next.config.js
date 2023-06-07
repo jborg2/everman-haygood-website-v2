@@ -7,6 +7,9 @@ const nextConfig = {
     swcMinify: true,
     mdxRs: false,
   },
+  images: {
+    domains: ['images.unsplash.com'],
+  },
 }
 
 module.exports = withContentlayer(nextConfig)
