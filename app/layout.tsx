@@ -9,6 +9,7 @@ import Providers from "@/components/providers";
 import { siteConfig } from "@/config/site";
 
 import { cn } from '@/lib/utils'
+import { SiteFooter } from "@/components/site-footer";
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL;
 
@@ -79,6 +80,7 @@ export default function RootLayout({
 					{children}
 					<Analytics />
 				</Providers>
+				<SiteFooter/>
 			</body>
 		</html>
 	);
