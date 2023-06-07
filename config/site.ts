@@ -1,6 +1,6 @@
 export const siteConfig = {
-    title : 'GrokIt',
-    description : 'GrokIt',
+    title : 'Everman - Haygood',
+    description : 'Everman - Haygood',
     contact : {
         email: 'evermanhaygood@gmail.com'
     },
