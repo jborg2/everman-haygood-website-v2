@@ -13,7 +13,7 @@ export default async function Home() {
       <div className='flex w-full flex-col max-w-[1100px]'>
         <h1 className={cn(
           "z-10",
-          "text-7xl text-transparent",
+          "text-5xl text-transparent",
           "font-display md:text-7xl lg:text-8xl xl:text-8xl 2xl-text-9xl",
           "tracking-wide",
           "text-foreground dark:text-foreground",
