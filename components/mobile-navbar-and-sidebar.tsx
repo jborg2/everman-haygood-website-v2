@@ -19,6 +19,9 @@ import { Menu as MenuIcon } from "lucide-react"
 import Link from 'next/link'
 import { navItems } from '@/config/navbar'
 import { useEffect } from "react"
+import { DocsSidebarNav } from "./sidebar-nav"
+import { allProjects } from '@/.contentlayer/generated';
+import { SidebarNavItem } from '@/components/sidebar-nav';
 
 export default function MobileNavBar(props: any) {
     const handleResize = () => {
@@ -28,6 +31,32 @@ export default function MobileNavBar(props: any) {
         window.addEventListener('resize', handleResize)
         return () => window.removeEventListener('resize', handleResize)
     }, [])
+
+    const generatedProjectNavItems: SidebarNavItem[] = allProjects
+        .filter((project) => project.published)
+        .filter((project) => project.slugAsParams).map((project) => {
+
+            return {
+                title: project.title,
+                href: `/projects/${project.slugAsParams}`,
+            }
+        })
+
+    const generatedSidebarItems = [
+        {
+            title: "Overview",
+            items: [
+                {
+                    title: "Introduction",
+                    href: "/projects",
+                },
+            ],
+        },
+        {
+            title: "Projects",
+            items: generatedProjectNavItems,
+        }
+    ]
 
     return (
         <nav
@@ -59,6 +88,10 @@ export default function MobileNavBar(props: any) {
                                     </DropdownMenuItem>
                                 </Link>
                             ))}
+                        </DropdownMenuGroup>
+                        <DropdownMenuSeparator className='my-4 bg-[hsl(var(--border))]'/>
+                        <DropdownMenuGroup>
+                            <DocsSidebarNav items={generatedSidebarItems} />
                         </DropdownMenuGroup>
                     </DropdownMenuContent>
                 </DropdownMenu>

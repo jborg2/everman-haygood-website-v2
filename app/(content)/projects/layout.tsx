@@ -1,7 +1,7 @@
 import { Toggle } from '@/components/darkmodetoggle';
 import NavBar from '@/components/navbar-2';
 import { cn } from '@/lib/utils'
-import MobileNavBar from "@/components/mobile-navbar";
+import MobileNavBar from "@/components/mobile-navbar-and-sidebar";
 import { DocsSidebarNav } from '@/components/sidebar-nav';
 import { docsConfig } from "@/config/docs"
 import { allProjects } from '@/.contentlayer/generated';
