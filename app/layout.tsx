@@ -65,19 +65,13 @@ const calSans = LocalFont({
 	variable: "--font-calsans",
 });
 
-const suisseIntl = LocalFont({
-	src: "../public/fonts/SuisseIntl-Regular.ttf",
-	variable: "--font-suisse"
-})
-
-
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={cn(inter.variable, calSans.variable, suisseIntl.variable)}>
+		<html lang="en" className={cn(inter.variable, calSans.variable)}>
 			<body
 				className="min-h-screen w-screen bg-silverbird dark:bg-pianoblack text-foreground dark:text-foreground motion-reduce:transform-none motion-reduce:transition-none"
 			>
