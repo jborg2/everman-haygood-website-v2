@@ -18,6 +18,8 @@ module.exports = {
     },
     extend: {
       colors: {
+        silverbird: "#f9f7f4",
+        pianoblack: "#171a1d",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

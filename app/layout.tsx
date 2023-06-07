@@ -1,6 +1,7 @@
 import "@styles/global.css";
 import "@/styles/mdx.css"
 import { Inter } from "next/font/google";
+import { Raleway } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "@/components/analytics";
@@ -53,6 +54,7 @@ export const metadata: Metadata = {
 		icon: "/favicon.ico",
 	},
 };
+
 const inter = Inter({
 	subsets: ["latin"],
 	variable: "--font-inter",
@@ -63,15 +65,21 @@ const calSans = LocalFont({
 	variable: "--font-calsans",
 });
 
+const suisseIntl = LocalFont({
+	src: "../public/fonts/SuisseIntl-Regular.ttf",
+	variable: "--font-suisse"
+})
+
+
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={cn(inter.variable, calSans.variable)}>
+		<html lang="en" className={cn(inter.variable, calSans.variable, suisseIntl.variable)}>
 			<body
-				className="min-h-screen w-screen bg-background dark:bg-background text-foreground dark:text-foreground motion-reduce:transform-none motion-reduce:transition-none"
+				className="min-h-screen w-screen bg-silverbird dark:bg-pianoblack text-foreground dark:text-foreground motion-reduce:transform-none motion-reduce:transition-none"
 			>
 				<Providers>
 					{children}

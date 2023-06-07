@@ -1,49 +1,36 @@
-import Hero from "@/components/hero";
-import Hero2 from "@/components/hero2";
-import NavBar from "@/components/navbar";
-import MobileNavBar from "@/components/mobile-navbar";
-
-import { cn } from "@/lib/utils";
-import Showcase from "@/components/showcase"
-import { getRepo } from "@/lib/github";
-
-const getRepos = async () => {
-  const urls: URL[] = [
-    new URL('https://api.github.com/repos/jborg2/jborg-website-v2'),
-  ]
-  const reposData = await Promise.all(urls.map((url: URL): Promise<any> => getRepo(url)))
-  return reposData
-}
+import React from "react";
+import { cn } from "@/lib/utils"
+import { ShowcaseGrid } from "@/components/showcase-2";
 
 export default async function Home() {
-  const gitHubData = await getRepos()
-  // console.log(gitHubData)
 
   return (
-    <>
-      <div className='block sm:hidden fixed top-0'>
-        <MobileNavBar />
+    <div className={cn("flex flex-col w-screen items-center justify-center",
+      "gap-4",
+      "py-16",
+      "px-16 lg:px-32"
+    )}>
+      <div className='flex w-full flex-col max-w-[1100px]'>
+        <h1 className={cn(
+          "z-10",
+          "text-7xl text-transparent",
+          "font-display md:text-7xl lg:text-8xl xl:text-8xl 2xl-text-9xl",
+          "tracking-wide",
+          "text-foreground dark:text-foreground",
+          "mb-6 lg:mb-6 xl:mb-4"
+        )}
+        >
+          Everman - Haygood
+        </h1>
+        <h3 className={cn(
+          "text-2xl",
+          "text-foreground dark:text-foreground",
+          "mb-8 sm:mb-8"
+        )}>
+          We build open source software. 
+        </h3>
+        <ShowcaseGrid />
       </div>
-      <Hero />
-      {/* <Hero2/> */}
-      <div
-        className='hidden sm:flex items-center justify-center w-full'        
-      >
-        <NavBar />
-      </div>
-      <div className={cn(
-        "bg-gradient-to-b",
-        "from-transparent via-zinc-100/50 to-zinc-100",
-        "dark:from-transparent dark:via-neutral-800/50 dark:to-neutral-800",
-        "min-h-screen",
-        "flex flex-col",
-        "pt-24",
-      )}>
-        <div className='mx-auto w-full scroll-m-0'>
-          {/* <Posts posts={allPosts as Post[]} /> */}
-          <Showcase />
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
