@@ -95,16 +95,16 @@ export const ShowcaseGrid = () => {
                             >
                                 <div className='flex flex-col justify-between h-full'>
                                     <div>
-                                        <h3 className={cn(
-                                            item.type === "project" ? "font-semibold text-2xl" : item.type === "blog" ? "font-semibold text-xl" : "font-medium text-xl",
-                                            "mb-2",
-                                            "flex flex-row items-center",
-                                        )}>
-                                            {item.title}
+                                        <div className='flex flex-row items-center w-full mb-2'>
+                                            <h3 className={cn(
+                                                item.type === "project" ? "font-semibold text-2xl" : item.type === "blog" ? "font-semibold text-xl" : "font-medium text-xl",
+                                            )}>
+                                                {item.title}
+                                            </h3>
                                             {item.type === 'project' && <Icons.gitHub
-                                                className='h-6 w-6 ml-3'
+                                                className='md:flex hidden h-6 w-6 ml-3 items-center justify-center'
                                             />}
-                                        </h3>
+                                        </div>
                                         <p className='text-zinc-600 dark:text-zinc-400 mb-2'>
                                             {item.desc}
                                         </p>
