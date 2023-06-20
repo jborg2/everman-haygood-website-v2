@@ -7,11 +7,7 @@ date: 2023-5-23
 <RepoCard url="https://api.github.com/repos/jborg2/semanticdb"/>
 
 ## Introduction
-
-This is Semantics Cloud. Over time, we found ourselves building more and more embedded search applications. I build my first one, the original "Semantics Cloud," back in early-2022 before the advent of tools like Langchain and newer LLMs like chatGPT. Nowadays, I can use a library like Langchain with Next.js and Vercel to spin up a full-stack embedded search app for a PDF in an hour or two, max. Most of the complexity with embedded search doesn't arise until you start to scale. We needed a super fast, super scalable, super reliable, and super cheap embedded search solution. This is why we built Semantics Cloud.
-## How It Works
-Semantics Cloud uses a rust API built with Actix as its backend. A local SQLite database is created to store project and user information. FAISS (Facebook AI Similarity Search) is used to store embedding vectors in memory and quickly find K nearest neighbors. Future plans for this project include cluster-based index memory management.
-
+SemanticsDB is a vector embeddings data that uses Actix, a Rust backend framework.
 ## API endpoints
 Below is a list of all available API endpoints and their respective functions:
 
