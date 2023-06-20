@@ -33,7 +33,7 @@ Below is a list of all available API endpoints and their respective functions:
 | PUT         | /user                         | Update own user info                                           |
 
 ## Architecture
-The Semantics cloud backend features an SQL database, a file store, and an in-memory vector store. The in-memory vector store is shadowed by 
+The SemanticsDB backend features an SQL database, a file store, and an in-memory vector store. The in-memory vector store is shadowed by 
 the SQL database (vector embeddings are stored both in the SQL database and in memory). This is because persistence is 
 needed (we want to save the state of embeddings if and when the server terminates), and KNN runs significantly faster on in-memory vectors
 than vectors housed on the disk. Thus, when the server starts, vector embeddings are loaded from the database into RAM. 
