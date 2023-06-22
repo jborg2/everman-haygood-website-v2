@@ -1,17 +1,13 @@
 ---
-title: Semantics Cloud
-desc: This is a high-powered and lightning fast rust server with a custom vector database that powers embedded search functionality for a range of applications.
+title: Semantics DB
+desc: This is a high-powered and lightning-fast rust server with a custom vector database that powers embedded search functionality for various applications.
 date: 2023-5-23
 ---
 
 <RepoCard url="https://api.github.com/repos/jborg2/semanticdb"/>
 
 ## Introduction
-
-This is Semantics Cloud. Over time, we found ourselves building more and more embedded search applications. I build my first one, the original "Semantics Cloud," back in early-2022 before the advent of tools like Langchain and newer LLMs like chatGPT. Nowadays, I can use a library like Langchain with Next.js and Vercel to spin up a full-stack embedded search app for a PDF in an hour or two, max. Most of the complexity with embedded search doesn't arise until you start to scale. We needed a super fast, super scalable, super reliable, and super cheap embedded search solution. This is why we built Semantics Cloud.
-## How It Works
-Semantics Cloud uses a rust API built with Actix as its backend. A local SQLite database is created to store project and user information. FAISS (Facebook AI Similarity Search) is used to store embedding vectors in memory and quickly find K nearest neighbors. Future plans for this project include cluster-based index memory management.
-
+SemanticsDB is a vector embeddings data that uses Actix, a Rust backend framework.
 ## API endpoints
 Below is a list of all available API endpoints and their respective functions:
 
@@ -35,3 +31,17 @@ Below is a list of all available API endpoints and their respective functions:
 | POST        | /admin/user                   | Create new user                                                |
 | PUT         | /admin/user                   | Update a user                                                  |
 | PUT         | /user                         | Update own user info                                           |
+
+## Architecture
+The SemanticsDB backend features an SQL database, a file store, and an in-memory vector store. The in-memory vector store is shadowed by 
+the SQL database (vector embeddings are stored both in the SQL database and in memory). This is because persistence is 
+needed (we want to save the state of embeddings if and when the server terminates), and KNN runs significantly faster on in-memory vectors
+than vectors housed on the disk. Thus, when the server starts, vector embeddings are loaded from the database into RAM. 
+### Memory Manager
+The memory manager handers vector embeddings stored in RAM. It tracks embeddings attached to each project. Additionally, it handles 
+searching for KNN on vector embeddings for a particular project. Upon server initialization, the memory manager searches projects
+in the SQL database and loads their respective embeddings into memory. It also handles synchronization between the database and
+memory embeddings during runtime. 
+### VPSearch
+The memory manager employs an algorithm called VPSearch to find the KNN vector embeddings for text embedding. VPSearch utilizes a (vantage point tree)[https://ieeexplore.ieee.org/document/5202635] 
+to efficiently search through vector embeddings. 
